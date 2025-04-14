@@ -1,0 +1,89 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Poésie</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Playfair Display', serif;
+            background: url('background.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: #2c2c2c;
+            text-align: center;
+            padding: 40px 20px;
+        }
+        #poem {
+            display: none;
+            font-size: 1.2em;
+            line-height: 1.6;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 10px;
+            padding: 20px;
+            max-width: 600px;
+            margin: 20px auto;
+            animation: fadeIn 2s ease-in-out forwards;
+        }
+        input[type="text"] {
+            padding: 10px;
+            font-size: 1em;
+            margin-top: 10px;
+        }
+        button, .share {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 1em;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            background-color: #333;
+            color: white;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <h2>Entrez le mot-clé magique</h2>
+    <input type="text" id="code" placeholder="Entrez ici">
+    <button onclick="checkCode()">Valider</button>
+    <div id="poem">
+        <h1>Poésie</h1>
+        <p>Sur des champs des terrains enchantés,</p>
+        <p>Au rythme des oiseaux qui chantent le malheur des rebelles ex templiers.</p>
+        <p>L'heure des poètes sonne à la clochette sourde,</p>
+        <p>L'enveloppe ne suffit plus à l'âme ou l'esprit qui le bourde.</p>
+        <p>Les étoiles, plus vieilles que le monde,</p>
+        <p>Mais qui se taisent à l'ignorance des années,</p>
+        <p>Où le moment dont les poètes sont prêts à devenir des rois,</p>
+        <p>La poésie sera ni foi ni lois.</p>
+        <br>
+        <button class="share" onclick="sharePoem()">Partager</button>
+    </div>
+    <audio id="sound" src="click.mp3" preload="auto"></audio>
+    <script>
+        function checkCode() {
+            const input = document.getElementById('code').value.trim().toUpperCase();
+            if (input === "MHD") {
+                document.getElementById('poem').style.display = "block";
+                document.getElementById('sound').play();
+            } else {
+                alert("Mot-clé incorrect !");
+            }
+        }
+        function sharePoem() {
+            const shareData = {
+                title: 'Poésie',
+                text: 'Viens découvrir ce poème magique !',
+                url: window.location.href
+            };
+            navigator.share(shareData).catch(err => alert("Partage non supporté"));
+        }
+    </script>
+</body>
+</html>
